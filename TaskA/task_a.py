@@ -25,6 +25,8 @@ Phone: 0401234567
 Email: anna.virtanen@example.com
 """
 
+from datetime import datetime
+
 def main():
     # Define the file name directly in the code
     reservations = "reservations.txt"
@@ -35,16 +37,39 @@ def main():
         parts = reservation.split('|')
 
     # Print the reservation to the console
-    print(reservation)
-    print(parts)
-    print(f"Reservation number: {parts[0]}")
+    # print(reservation)
+    # print(parts)
+
+    reservation_number = int(parts[0])
+    print(f"Reservation number: {reservation_number}")
+
     print(f"Booker: {parts[1]}")
-    print(f"Date: {parts[2]}")
-    print(f"Start time: {parts[3]}")
-    print(f"Number of hours: {parts[4]}")
-    print(f"Hourly price: {parts[5]} €")
-    print(f"Total price: {float(parts[4]) * float(parts[5])} €")
-    print(f"Paid: {parts[6]}")
+
+    day = datetime.strptime(parts[2], "%Y-%m-%d").date()
+    # print(type(day))
+    finnish_day = day.strftime("%d.%m.%Y")
+    # print(type(finnish_day))
+    print(f"Date: {finnish_day}")
+
+    time = datetime.strptime(parts[3], "%H:%M").time()
+    # print(type(time))
+    finnish_time = time.strftime("%H.%M")
+    print(f"Start time: {finnish_time}")
+
+    hours = int(parts[4])
+    print(f"Number of hours: {hours}")
+
+    hourly_price = float(parts[5])
+    formatted_hourly = f"{hourly_price:.2f}".replace(".", ",")
+    print(f"Hourly price: {formatted_hourly} €")
+
+    total_price = hours * hourly_price
+    formatted_total = f"{total_price:.2f}".replace(".", ",")
+    print(f"Total price: {formatted_total} €")
+
+    paid = bool(parts[6])
+    print(f"Paid: {'Yes' if paid else 'No'}")
+
     print(f"Location: {parts[7]}")
     print(f"Phone: {parts[8]}")
     print(f"Email: {parts[9]}")    
