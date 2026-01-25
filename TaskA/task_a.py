@@ -68,6 +68,7 @@ def main():
     print(f"Total price: {formatted_total} €")
 
     paid = bool(parts[6])
+    # paid = parts[6] == 'True'
     print(f"Paid: {'Yes' if paid else 'No'}")
 
     print(f"Location: {parts[7]}")
