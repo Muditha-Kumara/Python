@@ -1,3 +1,17 @@
+# ✅ TaskB Answer
+
+### Print Screen
+
+![alt text](image.png)
+
+### What was the most memorable thing about this task?
+
+> "{is_paid and 'Yes' or 'No'}" pattern risk. when pass the string "", the number 0, or None for 'Yes', logic is wrong.
+
+---
+
+---
+
 > [!NOTE]
 > The material was created with the help of ChatGPT and Copilot.
 
