@@ -87,7 +87,9 @@ def write_report(week_summaries: List[Dict[date, Dict[str, Any]]], week_numbers:
             week_num = week_numbers[week_idx]
             file.write(f"Week {week_num} electricity consumption and production (kWh, by phase)\n")
             file.write("Day      Date           Consumption [kWh]            Production [kWh]\n")
-            file.write("           v1      v2      v3           v1     v2      v3\n")
+            file.write(
+                "                       v1      v2      v3           v1     v2      v3\n"
+            )
             file.write("---------------------------------------------------------------------------\n")
             for day in sorted(summary.keys()):
                 row = format_row(day, summary[day])
@@ -96,7 +98,7 @@ def write_report(week_summaries: List[Dict[date, Dict[str, Any]]], week_numbers:
                     total_cons[i] += summary[day][f"consumption_v{i+1}"]
                     total_prod[i] += summary[day][f"production_v{i+1}"]
             file.write("\n")
-        # Optional combined summary
+        # Optional activity combined summary
         file.write("Total for all weeks (kWh):\n")
         cons_str = " ".join([format_number(c/1000) for c in total_cons])
         prod_str = " ".join([format_number(p/1000) for p in total_prod])
