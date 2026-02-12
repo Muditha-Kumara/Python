@@ -75,7 +75,7 @@ def format_row(day: date, summary: Dict[str, Any]) -> str:
     date_str = f"{day.day:02d}.{day.month:02d}.{day.year}"
     cons = [format_number(summary[f"consumption_v{i}"]/1000) for i in range(1,4)]
     prod = [format_number(summary[f"production_v{i}"]/1000) for i in range(1,4)]
-    return f"{weekday:<9} {date_str:<12} {cons[0]:>6} {cons[1]:>6} {cons[2]:>6}   {prod[0]:>6} {prod[1]:>6} {prod[2]:>6}"
+    return f"{weekday:<12} {date_str:<12} {cons[0]:>6} {cons[1]:>6} {cons[2]:>6}   {prod[0]:>6} {prod[1]:>6} {prod[2]:>6}"
 
 
 def write_report(week_summaries: List[Dict[date, Dict[str, Any]]], week_numbers: List[int], filename: str) -> None:
@@ -85,10 +85,14 @@ def write_report(week_summaries: List[Dict[date, Dict[str, Any]]], week_numbers:
         total_prod = [0,0,0]
         for week_idx, summary in enumerate(week_summaries):
             week_num = week_numbers[week_idx]
-            file.write(f"Week {week_num} electricity consumption and production (kWh, by phase)\n")
-            file.write("Day      Date           Consumption [kWh]            Production [kWh]\n")
             file.write(
-                "                       v1      v2      v3           v1     v2      v3\n"
+                f"Week {week_num} electricity consumption and production (kWh, by phase)\n"
+            )
+            file.write(
+                "   Day          Date        Consumption [kWh]       Production [kWh]\n"
+            )
+            file.write(
+                "                           v1      v2      v3      v1     v2      v3\n"
             )
             file.write("---------------------------------------------------------------------------\n")
             for day in sorted(summary.keys()):
