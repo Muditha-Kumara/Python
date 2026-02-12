@@ -114,6 +114,7 @@ def main() -> None:
         summary = summarize_week(data)
         week_summaries.append(summary)
     write_report(week_summaries, WEEK_NUMBERS, "summary.txt")
+    print("Report written to summary.txt successfully.")
 
 
 if __name__ == "__main__":
