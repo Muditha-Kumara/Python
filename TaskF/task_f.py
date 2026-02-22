@@ -167,6 +167,7 @@ def _format_date(day: date) -> str:
     """Formats a date as dd.mm.yyyy."""
 
     return f"{day.day}.{day.month}.{day.year}"
+    # return day.strftime("%d.%m.%Y")
 
 
 def _format_number(value: float) -> str:
